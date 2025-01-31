@@ -7,28 +7,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const longDriftBtn = document.querySelector(".left-btn");
     const shortDriftBtn = document.querySelector(".right-btn");
 
-    // Select the metrics section
-    const metricsDiv = document.querySelector(".metrics");
+    // Select the existing counter display elements
+    const longDriftDisplay = document.getElementById("long-drift-count");
+    const shortDriftDisplay = document.getElementById("short-drift-count");
 
-    // Create a container for the counts
-    const countContainer = document.createElement("div");
-    countContainer.classList.add("count-container");
-
-    // Create counter display elements
-    const longDriftDisplay = document.createElement("p");
-    const shortDriftDisplay = document.createElement("p");
-
-    longDriftDisplay.id = "long-drift-count";
-    shortDriftDisplay.id = "short-drift-count";
-
-    // Append elements inside the count container
-    countContainer.appendChild(longDriftDisplay);
-    countContainer.appendChild(shortDriftDisplay);
-
-    // Append the count container inside the metrics section
-    metricsDiv.appendChild(countContainer);
-
-    // Update the counter display
+    // Function to update the counter display
     function updateCounters() {
         longDriftDisplay.textContent = `Long Drift: ${longDriftCount}`;
         shortDriftDisplay.textContent = `Short Drift: ${shortDriftCount}`;
@@ -45,6 +28,16 @@ document.addEventListener("DOMContentLoaded", () => {
         shortDriftCount++;
         updateCounters();
         console.log(`Short Drift tapped! Total: ${shortDriftCount}`);
+    });
+
+    // Select the reset button
+    const resetBtn = document.getElementById("reset-btn");
+
+    // Reset counter values
+    resetBtn.addEventListener("click", () => {
+        longDriftCount = 0;
+        shortDriftCount = 0;
+        updateCounters();
     });
 
     // Initialize counters
